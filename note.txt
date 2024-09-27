@@ -1,0 +1,51 @@
+useReducer Hook is basically a more adnvance and more complex way of manageing state instead of using useState Hook.
+
+Work with a reducer function.
+
+*************************************
+function reducer(state, action){
+    switch (action.type){
+      case 'increment':{
+        return {...state, count:state.count+state.step}
+      }
+      case 'decrement':{
+        return {...state, count:state.count-state.step}
+      }
+      case 'defineCount':{
+        return {...state, count:action.payload}
+      }
+      case 'changeStep':{
+        return {...state, step:action.payload}
+      }
+      case 'reset':{
+        return initialState
+      }
+      default :{
+        throw new Error('Unknown action!!')
+      }
+    }
+}
+
+const [state, dispatch] = useReducer(reducer, initialState);
+const {count , step} = state;
+
+dispatch({type:'decrement'})
+
+*************************************
+
+Q. Why useReducer hook is required ? 
+Ans. state management with useState is not enough in certain situation:
+    1. when component have many state variable and state update spread across many event handler across the component it is very hard 
+        to manage all the states.
+    2. When multiple state need to start or change a the same time ( as a reaction to a same event , like "starting a game")
+    3. When updating a piece of state is dependent on change of another piece of state.
+
+Q.How useReducer help in managing state?
+Ans. It is an alternate way of managing and using states in react when state are more complex
+1. useReducer is used like this :- 
+    const [state, dispatch] = useReducer(reducer, initialState)
+2. store related peice of state in the state object. it can be a primitive value but state are often stored in the form of object.
+3. reducer function containing all the logic to update state. Decouples state logic from the component.
+4. reducer function need to be pure function (it should not have any side-effects). since state in react are immutable it always return a new state.
+5. dispatch function is used with argument like type and payload 
+6. reducer function contains an action parameter which define the action.type or action.payload send using dispatch. action object define the updation of state.
