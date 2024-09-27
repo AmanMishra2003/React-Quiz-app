@@ -1,9 +1,9 @@
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 
 import viteLogo from '/vite.svg'
 import './index.css'
 import Header from './Header'
-import Main from './component/main'
+import Main from './component/Main'
 import Loader from './Loader'
 import Error from './Error'
 import StartScreen from './component/StartScreen'
